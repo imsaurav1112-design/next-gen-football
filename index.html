@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucknow Football Academy</title>
-    <!-- FontAwesome for Icons -->
+    <title>Next Gen Football Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Reset */
@@ -25,27 +24,38 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #d32f2f; /* RFC Red */
+            background-color: #0853a8; /* Next Gen Blue */
             color: white;
             z-index: 1000;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
+            padding: 10px 50px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            flex: 0 0 auto;
             display: flex;
             align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            border-radius: 50%; /* Rounds the logo if needed */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Centered Navigation */
+        nav {
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: center;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 40px; /* Space between buttons */
         }
 
         nav ul li a {
@@ -53,12 +63,18 @@
             text-decoration: none;
             font-size: 14px;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 1px;
             transition: opacity 0.3s;
         }
 
         nav ul li a:hover {
-            opacity: 0.8;
+            opacity: 0.7;
+        }
+
+        /* Header placeholder for right side balance */
+        .header-spacer {
+            flex: 0 0 60px;
         }
 
         /* Full Screen Image Slider */
@@ -67,7 +83,7 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            margin-top: 60px; /* Offset for header */
+            margin-top: 80px; 
             background-color: #000;
         }
 
@@ -92,6 +108,7 @@
             padding: 80px 20px;
             text-align: center;
             background: #fff;
+            overflow: hidden; /* Prevents horizontal scroll from animations */
         }
 
         .image-section {
@@ -99,13 +116,21 @@
             height: 70vh;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
         }
 
+        /* Directional Animation Classes */
         .reveal {
-            opacity: 0;
-            transform: translateY(100px);
             transition: all 1s ease-out;
+            opacity: 0;
+        }
+
+        .reveal.hidden-down {
+            transform: translateY(100px);
+        }
+
+        .reveal.hidden-up {
+            transform: translateY(-100px);
         }
 
         .reveal.active {
@@ -115,9 +140,10 @@
 
         .content-section h2 {
             font-size: 36px;
-            color: #333;
-            margin-bottom: 10px;
+            color: #0853a8;
+            margin-bottom: 15px;
             text-transform: uppercase;
+            font-weight: 800;
         }
 
         .content-section p {
@@ -127,9 +153,16 @@
             margin: 0 auto;
         }
 
-        /* Contact Section (Red) */
+        .tagline {
+            font-size: 24px !important;
+            font-style: italic;
+            color: #333 !important;
+            margin-top: 10px !important;
+        }
+
+        /* Contact Section */
         .contact-section {
-            background-color: #d32f2f;
+            background-color: #0853a8;
             padding: 60px 10%;
             display: flex;
             flex-wrap: wrap;
@@ -178,13 +211,18 @@
 
         .contact-form button {
             align-self: flex-start;
-            background-color: #333;
-            color: white;
+            background-color: #fff;
+            color: #0853a8;
             border: none;
             padding: 10px 30px;
             cursor: pointer;
             border-radius: 4px;
             font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #ddd;
         }
 
         /* Footer */
@@ -209,6 +247,7 @@
             font-size: 16px;
             margin-bottom: 15px;
             font-weight: 600;
+            color: #0853a8;
         }
 
         .footer-col ul {
@@ -240,12 +279,17 @@
         }
 
         .newsletter-btn {
-            background-color: #d32f2f;
+            background-color: #0853a8;
             color: white;
             border: none;
             padding: 8px 15px;
             cursor: pointer;
             font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background-color: #063f80;
         }
 
         .social-icons i {
@@ -253,6 +297,11 @@
             color: #666;
             margin-right: 10px;
             cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .social-icons i:hover {
+            color: #0853a8;
         }
 
         .footer-bottom {
@@ -290,11 +339,16 @@
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
         }
 
         .whatsapp { background-color: #25D366; }
         .instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
-        .phone { background-color: #1976D2; }
+        .phone { background-color: #0853a8; }
         .close-btn { background-color: #000; }
 
         .scroll-top {
@@ -303,7 +357,7 @@
             left: 20px;
             width: 40px;
             height: 40px;
-            background-color: #e57373;
+            background-color: #0853a8;
             color: white;
             display: flex;
             justify-content: center;
@@ -312,6 +366,17 @@
             cursor: pointer;
             z-index: 1000;
             text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            nav ul { gap: 15px; font-size: 12px; }
+            .header-spacer { display: none; }
         }
     </style>
 </head>
@@ -319,52 +384,65 @@
 
     <!-- Header -->
     <header>
-        <div class="logo">LFA ACADEMY</div>
+        <div class="logo">
+            <!-- Ensure your image is named exactly logo.jpeg in the same folder -->
+            <img src="logo.jpeg" alt="Next Gen Football Academy Logo">
+        </div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Residential</a></li>
-                <li><a href="#">Grassroots</a></li>
+                <li><a href="#">Grassroot</a></li>
                 <li><a href="#">Club</a></li>
-                <li><a href="#">Press</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Blogs</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contacts</a></li>
             </ul>
         </nav>
+        <div class="header-spacer"></div>
     </header>
 
     <!-- Slider -->
     <div class="slider-container">
-        <!-- Using placeholder sports images -->
         <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1920&auto=format&fit=crop');"></div>
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1518605368461-1eb7a14e91fb?q=80&w=1920&auto=format&fit=crop');"></div>
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=1920&auto=format&fit=crop');"></div>
     </div>
 
     <!-- Section 1 -->
-    <div class="content-section reveal">
-        <h2>Lucknow's First Football Academy</h2>
-        <p>Igniting Passion, Nurturing Talent and Building Careers right here in the heart of Uttar Pradesh.</p>
+    <div class="content-section">
+        <div class="reveal">
+            <h2>Next Gen Football Academy</h2>
+            <p class="tagline">"Be Kind, Be Curious."</p>
+            <br>
+            <p>Igniting Passion, Nurturing Talent and Building Careers right here in the heart of Uttar Pradesh.</p>
+        </div>
     </div>
     <div class="image-section" style="background-image: url('https://images.unsplash.com/photo-1553778263-73a83bab9b0c?q=80&w=1920&auto=format&fit=crop');"></div>
 
     <!-- Section 2 -->
-    <div class="content-section reveal">
-        <h2>Professional European Training</h2>
-        <p>Experience UEFA licensed coaching methodologies tailored for rapid athlete development.</p>
+    <div class="content-section">
+        <div class="reveal">
+            <h2>Professional European Training</h2>
+            <p>Experience UEFA licensed coaching methodologies tailored for rapid athlete development.</p>
+        </div>
     </div>
     <div class="image-section" style="background-image: url('https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1920&auto=format&fit=crop');"></div>
 
     <!-- Section 3 -->
-    <div class="content-section reveal">
-        <h2>Elite Infrastructure</h2>
-        <p>State-of-the-art natural and artificial turfs equipped with modern recovery facilities.</p>
+    <div class="content-section">
+        <div class="reveal">
+            <h2>Elite Infrastructure</h2>
+            <p>State-of-the-art natural and artificial turfs equipped with modern recovery facilities.</p>
+        </div>
     </div>
     <div class="image-section" style="background-image: url('https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=1920&auto=format&fit=crop');"></div>
 
     <!-- Section 4 -->
-    <div class="content-section reveal">
-        <h2>Direct Pathways to Pro Clubs</h2>
-        <p>Our robust scouting network provides direct opportunities into national and international leagues.</p>
+    <div class="content-section">
+        <div class="reveal">
+            <h2>Direct Pathways to Pro Clubs</h2>
+            <p>Our robust scouting network provides direct opportunities into national and international leagues.</p>
+        </div>
     </div>
     <div class="image-section" style="background-image: url('https://images.unsplash.com/photo-1431324155629-1a6d0a6eb433?q=80&w=1920&auto=format&fit=crop');"></div>
 
@@ -372,7 +450,7 @@
     <section class="contact-section">
         <div class="contact-text">
             <h2>QUESTIONS?</h2>
-            <p>Call +91 97395 50077 or Email:<br>info@lucknowfa.in or fill in the<br>form and we will be happy to connect<br>with you in the next 24 hours on any<br>query you may have.</p>
+            <p>Call +91 97395 50077 or Email:<br>nextgenfootballacademy26@gmail.com<br>or fill in the form and we will be happy to connect<br>with you in the next 24 hours on any<br>query you may have.</p>
         </div>
         <div class="contact-form">
             <input type="text" placeholder="Name">
@@ -389,12 +467,11 @@
             <h4>Quick Links</h4>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Residential Academy</a></li>
-                <li><a href="#">Trials Application Form</a></li>
-                <li><a href="#">Student Stories</a></li>
-                <li><a href="#">Parent Testimonials</a></li>
-                <li><a href="#">Grassroots Centres</a></li>
+                <li><a href="#">Grassroot</a></li>
                 <li><a href="#">Club</a></li>
+                <li><a href="#">Blogs</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contacts</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -408,15 +485,12 @@
             <h4>Registered Office</h4>
             <p>Gomti Nagar | Lucknow | Uttar Pradesh 226010</p>
             <br>
-            <h4>UAE Office</h4>
-            <p>Wasl District | 89 Al Maktoum Hospital Rd | Naif | Dubai</p>
-            <br>
-            <h4>Residential Academy</h4>
+            <h4>Academy Campus</h4>
             <p>Campus Area | Lucknow Outskirts | UP</p>
         </div>
         <div class="footer-col">
             <h4>Get in Touch</h4>
-            <p>+91 8451026564<br>+91 97395 50077<br>info@lucknowfa.in</p>
+            <p>+91 8451026564<br>+91 97395 50077<br>nextgenfootballacademy26@gmail.com</p>
             <br>
             <h4>Let's Connect</h4>
             <div class="social-icons">
@@ -429,7 +503,7 @@
 
         <div class="footer-bottom">
             <div>Terms | Privacy | Security | Cookies</div>
-            <div>© 2016 - 2026 | LFA Football Academy</div>
+            <div>© 2016 - 2026 | Next Gen Football Academy</div>
         </div>
     </footer>
 
@@ -443,7 +517,7 @@
         <div class="icon-btn close-btn" onclick="document.querySelector('.floating-icons').style.display='none'"><i class="fas fa-times"></i></div>
     </div>
 
-    <!-- Scripts for Animations -->
+    <!-- Scripts -->
     <script>
         // Image Slider Logic (5 second loop)
         const slides = document.querySelectorAll('.slide');
@@ -455,24 +529,50 @@
             slides[currentSlide].classList.add('active');
         }, 5000);
 
-        // Scroll Reveal Logic
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150; // trigger point
+        // Directional Scroll Animation Logic
+        const reveals = document.querySelectorAll(".reveal");
+        
+        // Initial setup: assume user will scroll down first
+        reveals.forEach(reveal => reveal.classList.add("hidden-down"));
 
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        let lastScrollY = window.scrollY;
+
+        function handleScroll() {
+            let currentScrollY = window.scrollY;
+            let scrollingDown = currentScrollY > lastScrollY;
+            let windowHeight = window.innerHeight;
+
+            reveals.forEach(reveal => {
+                let elementTop = reveal.getBoundingClientRect().top;
+                let elementBottom = reveal.getBoundingClientRect().bottom;
+                let triggerPoint = 100;
+
+                // Check if element is currently visible in the viewport
+                if (elementTop < windowHeight - triggerPoint && elementBottom > triggerPoint) {
+                    reveal.classList.add("active");
+                    reveal.classList.remove("hidden-down", "hidden-up");
+                } else {
+                    // Element is out of view, decide where it should "wait"
+                    reveal.classList.remove("active");
+                    
+                    if (scrollingDown) {
+                        // Scrolling down: elements leaving top hide upwards, elements below hide downwards
+                        if (elementTop < 0) reveal.classList.add("hidden-up");
+                        if (elementTop > windowHeight) reveal.classList.add("hidden-down");
+                    } else {
+                        // Scrolling up: elements leaving bottom hide downwards, elements above hide upwards
+                        if (elementBottom > windowHeight) reveal.classList.add("hidden-down");
+                        if (elementTop < 0) reveal.classList.add("hidden-up");
+                    }
                 }
-            }
+            });
+
+            lastScrollY = currentScrollY;
         }
 
-        // Check on scroll
-        window.addEventListener("scroll", reveal);
-        // Check on initial load
-        reveal();
+        window.addEventListener("scroll", handleScroll);
+        // Trigger once on load
+        handleScroll();
     </script>
 </body>
 </html>
