@@ -29,6 +29,7 @@
             z-index: 1000;
             display: flex;
             align-items: center;
+            justify-content: space-between; /* Spreads out logo and nav/hamburger */
             padding: 10px 50px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
@@ -45,11 +46,20 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* Centered Navigation */
+        /* Hamburger Menu Icon (Hidden on Desktop) */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Centered Navigation for Desktop */
         nav {
             flex: 1 1 auto;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         nav ul {
@@ -72,7 +82,12 @@
             opacity: 0.7;
         }
 
-        /* Header placeholder for right side balance */
+        /* Close Button inside Mobile Menu (Hidden on Desktop) */
+        .close-menu-btn {
+            display: none;
+        }
+
+        /* Header placeholder for right side balance on desktop */
         .header-spacer {
             flex: 0 0 60px;
         }
@@ -108,7 +123,7 @@
             padding: 80px 20px;
             text-align: center;
             background: #fff;
-            overflow: hidden; /* Prevents horizontal scroll from animations */
+            overflow: hidden; 
         }
 
         .image-section {
@@ -373,10 +388,72 @@
             transform: scale(1.1);
         }
 
-        /* Responsive */
+        /* ========================================= */
+        /* RESPONSIVE STYLES (MOBILE)                */
+        /* ========================================= */
         @media screen and (max-width: 768px) {
-            nav ul { gap: 15px; font-size: 12px; }
-            .header-spacer { display: none; }
+            header {
+                padding: 10px 20px; /* Reduces left gap next to logo */
+            }
+
+            .header-spacer { 
+                display: none; 
+            }
+
+            /* Show Hamburger Menu */
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            /* Slide-in Panel Styles */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -300px; /* Hidden off-screen by default */
+                width: 250px;
+                height: 100vh;
+                background-color: #0853a8;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 80px;
+                transition: right 0.4s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+                z-index: 1001; /* Ensure it stays above everything */
+            }
+
+            /* Class added via JS to slide the menu in */
+            nav.active {
+                right: 0;
+            }
+
+            nav ul { 
+                flex-direction: column; 
+                gap: 0; 
+                width: 100%;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 20px 0;
+                font-size: 16px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Show Close Button */
+            .close-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 25px;
+                font-size: 30px;
+                color: white;
+                cursor: pointer;
+            }
         }
     </style>
 </head>
@@ -387,7 +464,18 @@
         <div class="logo">
             <img src="logo.jpeg" alt="Next Gen Football Academy Logo">
         </div>
-        <nav>
+
+        <!-- Hamburger Icon -->
+        <div class="mobile-menu-btn" id="open-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- Navigation (Slide-in Panel on Mobile) -->
+        <nav id="side-menu">
+            <!-- Close Icon -->
+            <div class="close-menu-btn" id="close-menu">
+                <i class="fas fa-times"></i>
+            </div>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Grassroot</a></li>
@@ -397,6 +485,7 @@
                 <li><a href="#">Contacts</a></li>
             </ul>
         </nav>
+        
         <div class="header-spacer"></div>
     </header>
 
@@ -518,6 +607,19 @@
 
     <!-- Scripts -->
     <script>
+        // --- Mobile Menu Slide Logic ---
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const sideMenu = document.getElementById('side-menu');
+
+        openMenuBtn.addEventListener('click', () => {
+            sideMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+        });
+
         // Image Slider Logic (5 second loop)
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
